@@ -33,6 +33,7 @@ boxes.forEach((box) => {
         }
         box.disabled = true;
 
+        checkDraw();
         checkWinner();
     });
 });
@@ -66,5 +67,18 @@ const checkWinner = () => {
         }
     }
 };
+const checkDraw = () => {
+    count = 0;
+    for (let box of boxes) {
+        if (box.innerText === "") {
+            count++;
+        }
+    }
+    if (count === 0) {
+        msg.innerText = "Game is a Draw!";
+        msgContainer.classList.remove("hide");
+        disableBtn();
+    }   
+}
 newGameBtn.addEventListener("click", resetGame);
 resetBtn.addEventListener("click", resetGame);
